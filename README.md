@@ -1,2 +1,2 @@
 # markdown
-Quick and dirty Markdown translator for a journal entries
+Quick and dirty Markdown translator for entries from a journal
