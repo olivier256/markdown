@@ -51,6 +51,9 @@ public class Markdown {
 						line = line.replaceAll("# ", "<DIV><H1>");
 						firstInstanceOfDIV = false;
 					} else {
+						if (!firstInstanceOfLI) {
+							line = "</UL>\n" + line;
+						}
 						line = line.replaceAll("# ", "</DIV>\n\n<DIV><H1>");
 						firstInstanceOfLI = true;
 					}
@@ -80,7 +83,14 @@ public class Markdown {
 				line = transformLink(line);
 				line = transformB(line);
 				line = transformI(line);
+				line = line.replaceAll("  ", "<BR>");
 				out.println(line);
+			}
+			if (!firstInstanceOfLI) {
+				out.println("</UL>");
+			}
+			if (!firstInstanceOfDIV) {
+				out.println("</DIV>");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
